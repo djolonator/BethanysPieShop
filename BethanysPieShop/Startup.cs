@@ -39,6 +39,7 @@ namespace BethanysPieShop
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             services.AddScoped<IPieAdderRepository, PieAdderRepository>();
+            services.AddScoped<IManagerRepository, ManagerRepository>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
