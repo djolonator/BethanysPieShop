@@ -33,7 +33,12 @@ namespace BethanysPieShop.Models
 
         public Pie GetPieById(int pieId)
         {
-            return _appDbContext.Pies.FirstOrDefault(p => p.PieId == pieId);
+            return _appDbContext.Pies.Include(c => c.Category).FirstOrDefault(p => p.PieId == pieId);
+        }
+
+        public IEnumerable<Pie> GetAllPiesWithCategories() 
+        {
+            return _appDbContext.Pies.Include(c => c.Category);
         }
     }
 }
