@@ -80,16 +80,14 @@ namespace BethanysPieShop.Controllers
             ViewBag.EditCompletteMessage = "Pie Edited";
             return View();
         }
-
-        //public async Task<IActionResult> Delete(int pieId)
-        //{
-        //    var pie = await _appDbContext.Pies.FindAsync(pieId);
-        //    _appDbContext.Pies.Remove(pie);
-        //    await _appDbContext.SaveChangesAsync();
-        //    ViewBag.DeleteMessage = "Pie Deleted";
-        //    return View();
-        //}
-
-
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> Delete(int PieId)
+        {
+            var pie = await _appDbContext.Pies.FindAsync(PieId);
+            _appDbContext.Pies.Remove(pie);
+            await _appDbContext.SaveChangesAsync();
+            ViewBag.DeleteMessage = "Pie Deleted";
+            return View();
+        }
     }
 }

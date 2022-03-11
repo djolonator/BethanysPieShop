@@ -1,6 +1,11 @@
 ﻿@model PieManagerVM
 
-<h1>Pie manager</h1>
+<h1>Pie manager</h1>  <p class="button">
+    <a class="btn btn-primary"
+       asp-controller="PieAdder"
+       asp-action="AddPie"
+       asp-route-Category="">Create pie</a>
+</p>
 
 @foreach (var pie in Model.Pies)
 {

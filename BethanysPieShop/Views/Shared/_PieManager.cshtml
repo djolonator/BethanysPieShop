@@ -11,14 +11,21 @@
             </h3>
             <p>@Model.ShortDescription</p>
         </div>
-        <div class="ViewDetails">
+        <div class="btn-group">
             <p class="button">
                 <a class="btn btn-primary"
                    asp-controller="Manager"
                    asp-action="ViewDetails"
-                   asp-route-pieId="@Model.PieId">ViewDetails</a>
+                   asp-route-pieId="@Model.PieId">Edit</a>
             </p>
+                <form asp-action="Delete">
+                <input type="hidden" asp-for="PieId" />
+                <input type="submit" value="Delete" class="btn btn-primary" />
+            </form>
+            
+            
         </div>
+
     </div>
 
 </div>
