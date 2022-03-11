@@ -35,7 +35,7 @@ namespace BethanysPieShop.Controllers
 
         public IActionResult PieAdded()
         {
-            ViewBag.CheckoutCompleteMessage = "New pie added successful";
+            ViewBag.PieAddedMessage = "New pie added successful";
             return View();
         }
     }

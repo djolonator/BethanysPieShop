@@ -22,5 +22,14 @@ namespace BethanysPieShop.Models
                 return _appDbContext.Pies.Include(c => c.Category);
             }
         }
+        public void EditPie(Pie pie)
+        {
+
+        }
+
+        public void RemovePie(Pie pie)
+        {
+
+        }
     }
 }

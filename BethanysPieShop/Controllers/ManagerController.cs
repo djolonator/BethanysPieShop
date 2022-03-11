@@ -1,7 +1,9 @@
 ﻿using BethanysPieShop.Models;
 using BethanysPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BethanysPieShop.Controllers
 {
@@ -9,11 +11,13 @@ namespace BethanysPieShop.Controllers
     {
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly AppDbContext _appDbContext;
 
-        public ManagerController(IPieRepository pieRepository, ICategoryRepository categoryRepository)
+        public ManagerController(IPieRepository pieRepository, ICategoryRepository categoryRepository, AppDbContext appDbContext)
         {
             _pieRepository = pieRepository;
             _categoryRepository = categoryRepository;
+            _appDbContext = appDbContext;
         }
 
         public ViewResult List()
@@ -34,7 +38,7 @@ namespace BethanysPieShop.Controllers
             var allCategories = _categoryRepository.AllCategories;
 
             var vm = new PieVM()
-            {
+            {//mapiranje
                 AllergyInformation = pie.AllergyInformation,
                 Category = pie.Category,
                 CategoryId = pie.CategoryId,
@@ -53,11 +57,39 @@ namespace BethanysPieShop.Controllers
             return View(vm);
         }
 
-        public IActionResult Edit(int pieId) 
+        public IActionResult Edit(PieVM vm)
         {
+            var pie = new Pie();
 
+            pie.AllergyInformation = vm.AllergyInformation;
+            pie.Category = vm.Category;
+            pie.CategoryId = vm.CategoryId;
+            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
+            pie.ImageUrl = vm.ImageUrl;
+            pie.InStock = vm.InStock;
+            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
+            pie.LongDescription = vm.LongDescription;
+            pie.Name = vm.Name;
+            pie.PieId = vm.PieId;
+            pie.ShortDescription = vm.ShortDescription;
+            pie.Price = vm.Price;
 
+            _appDbContext.Pies.Update(pie);
+            _appDbContext.SaveChanges();
+
+            ViewBag.EditCompletteMessage = "Pie Edited";
             return View();
         }
+
+        //public async Task<IActionResult> Delete(int pieId)
+        //{
+        //    var pie = await _appDbContext.Pies.FindAsync(pieId);
+        //    _appDbContext.Pies.Remove(pie);
+        //    await _appDbContext.SaveChangesAsync();
+        //    ViewBag.DeleteMessage = "Pie Deleted";
+        //    return View();
+        //}
+
+
     }
 }
