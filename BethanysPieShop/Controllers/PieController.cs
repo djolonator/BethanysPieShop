@@ -124,7 +124,7 @@ namespace BethanysPieShop.Controllers
             return View();
         }
 
-        public ViewResult AddPie()
+        public ViewResult CreatePie()
         {
             var vm = new PieVM(){ };
 
