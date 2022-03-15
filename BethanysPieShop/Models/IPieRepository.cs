@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BethanysPieShop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +12,9 @@ namespace BethanysPieShop.Models
         IEnumerable<Pie> PiesOfTheWeek { get; }
         Pie GetPieById(int pieId);
         IEnumerable<Pie> GetAllPiesWithCategories();
-        void ViewDetails();
-        void CreatePie();
-        void Edit();
-        void Delete();
+       
+        void AddPie(PieVM vm);
+        void Edit(PieVM vm);
+        void Delete(int PieId);
     }
 }

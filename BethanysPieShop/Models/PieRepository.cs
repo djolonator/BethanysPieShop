@@ -44,31 +44,53 @@ namespace BethanysPieShop.Models
             return _appDbContext.Pies.Include(c => c.Category);
         }
 
-        public void CreatePie(Pie pie)
+        public void Edit(PieVM vm)
         {
+            var pie = new Pie();
+
+            pie.AllergyInformation = vm.AllergyInformation;
+            pie.Category = vm.Category;
+            pie.CategoryId = vm.CategoryId;
+            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
+            pie.ImageUrl = vm.ImageUrl;
+            pie.InStock = vm.InStock;
+            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
+            pie.LongDescription = vm.LongDescription;
+            pie.Name = vm.Name;
+            pie.PieId = vm.PieId;
+            pie.ShortDescription = vm.ShortDescription;
+            pie.Price = vm.Price;
+
+            _appDbContext.Pies.Update(pie);
+            _appDbContext.SaveChanges();
+        }
+
+        public void Delete(int PieId)
+        {
+            //Pie pie = new Pie();
+            _appDbContext.Pies.Remove(GetPieById(PieId));
+            _appDbContext.SaveChanges();
+        }
+
+        public void AddPie(PieVM vm)
+        {
+            var pie = new Pie();
+
+            pie.AllergyInformation = vm.AllergyInformation;
+            pie.Category = vm.Category;
+            pie.CategoryId = vm.CategoryId;
+            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
+            pie.ImageUrl = vm.ImageUrl;
+            pie.InStock = vm.InStock;
+            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
+            pie.LongDescription = vm.LongDescription;
+            pie.Name = vm.Name;
+            pie.PieId = vm.PieId;
+            pie.ShortDescription = vm.ShortDescription;
+            pie.Price = vm.Price;
+
             _appDbContext.Pies.Add(pie);
             _appDbContext.SaveChanges();
-
-        }
-
-        public void ViewDetails()
-        {
-            
-        }
-
-        public void Edit()
-        {
-            
-        }
-
-        public void Delete()
-        {
-            
-        }
-
-        public void CreatePie()
-        {
-            throw new NotImplementedException();
         }
     }
 }

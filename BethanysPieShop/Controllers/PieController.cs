@@ -92,24 +92,7 @@ namespace BethanysPieShop.Controllers
 
         public IActionResult Edit(PieVM vm)
         {
-            var pie = new Pie();
-
-            pie.AllergyInformation = vm.AllergyInformation;
-            pie.Category = vm.Category;
-            pie.CategoryId = vm.CategoryId;
-            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
-            pie.ImageUrl = vm.ImageUrl;
-            pie.InStock = vm.InStock;
-            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
-            pie.LongDescription = vm.LongDescription;
-            pie.Name = vm.Name;
-            pie.PieId = vm.PieId;
-            pie.ShortDescription = vm.ShortDescription;
-            pie.Price = vm.Price;
-
-            //_appDbContext.Pies.Update(pie);
-            //_appDbContext.SaveChanges();
-
+            _pieRepository.Edit(vm);
             ViewBag.EditCompletteMessage = "Pie Edited";
             return View();
         }
@@ -117,18 +100,31 @@ namespace BethanysPieShop.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult Delete(int PieId)
         {
-            //var pie = await _appDbContext.Pies.FindAsync(PieId);
-            //_appDbContext.Pies.Remove(pie);
-            //_appDbContext.SaveChangesAsync();
+            _pieRepository.Delete(PieId);
             ViewBag.DeleteMessage = "Pie Deleted";
             return View();
         }
 
         public ViewResult CreatePie()
         {
-            var vm = new PieVM(){ };
+            var vm = new PieVM() { };
 
             return View(vm);
         }
+        public ViewResult AddPie()
+        {
+            var vm = new PieVM() { };
+
+            return View(vm);
+        }
+        [HttpPost]
+        public ViewResult AddPie(PieVM vm)
+        {
+            _pieRepository.AddPie(vm);
+
+            return View(vm);
+        }
+
+
     }
 }
