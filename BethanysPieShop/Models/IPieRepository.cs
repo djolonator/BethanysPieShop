@@ -12,7 +12,6 @@ namespace BethanysPieShop.Models
         IEnumerable<Pie> PiesOfTheWeek { get; }
         Pie GetPieById(int pieId);
         IEnumerable<Pie> GetAllPiesWithCategories();
-       
         void AddPie(PieVM vm);
         void Edit(PieVM vm);
         void Delete(int PieId);

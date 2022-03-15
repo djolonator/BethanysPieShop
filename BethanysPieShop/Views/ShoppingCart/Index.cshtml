@@ -14,14 +14,20 @@
     <tbody>
         @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
         {
-            <tr>
-                <td class="text-center">@line.Amount</td>
-                <td class="text-left">@line.Pie.Name</td>
-                <td class="text-right">@line.Pie.Price.ToString("c")</td>
-                <td class="text-right">
-                    @((line.Amount * line.Pie.Price).ToString("c"))
-                </td>
-            </tr>
+        <tr>
+            <td class="text-center">@line.Amount</td>
+            <td class="text-left">@line.Pie.Name</td>
+            <td class="text-right">@line.Pie.Price.ToString("c")</td>
+            <td class="text-right">
+                @((line.Amount * line.Pie.Price).ToString("c"))
+            </td>
+            <td class="button"> 
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromCart"
+                   asp-route-pieId="@ ">Remove from cart</a>
+            </td>
+
+        </tr>
+
         }
     </tbody>
     <tfoot>
@@ -33,6 +39,7 @@
         </tr>
     </tfoot>
 </table>
+
 
 
 <div class="text-center">
