@@ -11,5 +11,6 @@ namespace BethanysPieShop.Models
         IEnumerable<Pie> PiesOfTheWeek { get; }
         Pie GetPieById(int pieId);
         IEnumerable<Pie> GetAllPiesWithCategories();
+        void CreatePie(Pie pie);
     }
 }

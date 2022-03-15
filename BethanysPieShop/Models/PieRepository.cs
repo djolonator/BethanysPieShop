@@ -40,5 +40,12 @@ namespace BethanysPieShop.Models
         {
             return _appDbContext.Pies.Include(c => c.Category);
         }
+
+        public void CreatePie(Pie pie)
+        {
+            _appDbContext.Pies.Add(pie);
+            _appDbContext.SaveChanges();
+
+        }
     }
 }

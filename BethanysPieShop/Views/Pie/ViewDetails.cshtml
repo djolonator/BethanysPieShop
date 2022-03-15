@@ -1,12 +1,8 @@
-﻿@model Pie
+﻿@model PieVM
 
-
-
-<form asp-action="AddPie" method="post" class="form-horizontal" role="form">
+<form asp-controller="Pie" asp-action="Edit" method="post" class="form-horizontal" role="form" asp-route-pieId="@Model.PieId">
     <h4>Fill in details about pie.</h4>
-
     <div asp-validation-summary="All" class="text-danger"></div>
-
 
     <div class="form-group">
         <label asp-for="Name" class="col-md-2 control-label"></label>
@@ -72,7 +68,6 @@
         </div>
     </div>
 
-
     <div class="form-group">
         <label asp-for="InStock" class="col-md-2 control-label"></label>
         <div class="col-md-5">
@@ -82,18 +77,18 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+        <label class="col-md-2 control-label">Select Category</label>
         <div class="col-md-5">
-            <input asp-for="CategoryId" class="form-control" />
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <select name="categories" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName"))"></select>
         </div>
+        <input type="hidden" asp-for="CategoryId" />
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn btn-primary" value="Add pie" />
+            <input type="submit" class="btn btn-primary" value="Edit" />
         </div>
     </div>
-
+    
 </form>
 
