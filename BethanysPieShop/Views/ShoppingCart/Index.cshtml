@@ -22,8 +22,8 @@
                 @((line.Amount * line.Pie.Price).ToString("c"))
             </td>
             <td class="button"> 
-                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromCart"
-                   asp-route-pieId="@ ">Remove from cart</a>
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart"
+                   asp-route-pieId="@line.Pie.PieId ">Remove from cart</a>
             </td>
 
         </tr>
