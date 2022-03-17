@@ -47,14 +47,14 @@ namespace BethanysPieShop.Models
                 {
                     ShoppingCartId = ShoppingCartId,
                     Pie = pie,
-                    Amount = 1
+                    Amount = amount
                 };
 
                 _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
             }
             else
             {
-                shoppingCartItem.Amount++;
+                shoppingCartItem.Amount+=amount;
             }
             _appDbContext.SaveChanges();
         }

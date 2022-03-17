@@ -11,8 +11,6 @@ namespace BethanysPieShop.Models
     {
         private readonly AppDbContext _appDbContext;
         
-
-
         public PieRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -44,51 +42,30 @@ namespace BethanysPieShop.Models
             return _appDbContext.Pies.Include(c => c.Category);
         }
 
-        public void Edit(PieVM vm)
+        public void Edit(Pie pie)
         {
-            var pie = new Pie();
-
-            pie.AllergyInformation = vm.AllergyInformation;
-            pie.Category = vm.Category;
-            pie.CategoryId = vm.CategoryId;
-            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
-            pie.ImageUrl = vm.ImageUrl;
-            pie.InStock = vm.InStock;
-            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
-            pie.LongDescription = vm.LongDescription;
-            pie.Name = vm.Name;
-            pie.PieId = vm.PieId;
-            pie.ShortDescription = vm.ShortDescription;
-            pie.Price = vm.Price;
-
             _appDbContext.Pies.Update(pie);
             _appDbContext.SaveChanges();
         }
 
-        public void Delete(int PieId)
+        public bool Delete(int PieId)
         {
-            //Pie pie = new Pie();
-            _appDbContext.Pies.Remove(GetPieById(PieId));
-            _appDbContext.SaveChanges();
+            var pie = GetPieById(PieId);
+            if (pie == null)
+            {
+                return false;
+            }
+            else 
+            {
+                _appDbContext.Pies.Remove(GetPieById(PieId));
+                _appDbContext.SaveChanges();
+
+                return true;
+            } 
         }
 
-        public void AddPie(PieVM vm)
+        public void AddPie(Pie pie)
         {
-            var pie = new Pie();
-
-            pie.AllergyInformation = vm.AllergyInformation;
-            pie.Category = vm.Category;
-            pie.CategoryId = vm.CategoryId;
-            pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
-            pie.ImageUrl = vm.ImageUrl;
-            pie.InStock = vm.InStock;
-            pie.IsPieOfTheWeek = vm.IsPieOfTheWeek;
-            pie.LongDescription = vm.LongDescription;
-            pie.Name = vm.Name;
-            pie.PieId = vm.PieId;
-            pie.ShortDescription = vm.ShortDescription;
-            pie.Price = vm.Price;
-
             _appDbContext.Pies.Add(pie);
             _appDbContext.SaveChanges();
         }
