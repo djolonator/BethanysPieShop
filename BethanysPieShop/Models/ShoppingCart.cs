@@ -94,12 +94,15 @@ namespace BethanysPieShop.Models
                            .ToList());
         }
 
-        //public int Count()
-        //{
-        //    return GetShoppingCartItems().Count * _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Sum(s => s.Amount);
-        //}
+        public int GetCount()
+        {
+            return _appDbContext.ShoppingCartItems
+                     .Where(c => c.ShoppingCartId == ShoppingCartId)
+                     .Select(c => c.Amount)
+                     .Sum();
+        }
 
-            public void ClearCart()
+        public void ClearCart()
         {
             var cartItems = _appDbContext
                 .ShoppingCartItems
