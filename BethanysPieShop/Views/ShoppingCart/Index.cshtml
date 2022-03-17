@@ -25,9 +25,7 @@
                 <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart"
                    asp-route-pieId="@line.Pie.PieId ">Remove from cart</a>
             </td>
-
         </tr>
-
         }
     </tbody>
     <tfoot>
@@ -35,6 +33,10 @@
             <td colspan="3" class="text-right">Total:</td>
             <td class="text-right">
                 @Model.ShoppingCartTotal.ToString("c")
+            </td>
+            <td class="button">
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="ClearCart"
+                   >Clear cart</a>
             </td>
         </tr>
     </tfoot>
