@@ -13,11 +13,13 @@
                 <p>@Model.ShortDescription</p>
             </div>
             <div>
-                <input type="number" value="1" name="Amount" class="Amount" id="Amount" />
-            </div>
-            <div class="addToCart">
                 <button type="submit" title="Add to cart" class="btn btn-primary">Add to cart</button>
+                <input class="pull-right"  type="number" min="1" max="10" style="width: 3em;" value="1" name="Amount" id="Amount" />
+                <b>Choose amount</b>
+            </div>
+            <div>
             </div>
         </div>
+        
     </div>
 </form>
