@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BethanysPieShop.Models;
 using BethanysPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,7 +22,7 @@ namespace BethanysPieShop.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public ViewResult List(string category)
+        public ViewResult List(string category, string searchString, string pieCategory)
         {
             IEnumerable<Pie> pies;
             string currentCategory;
@@ -36,12 +39,31 @@ namespace BethanysPieShop.Controllers
                 currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
             }
 
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                pies = pies.Where(s => s.Name!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(pieCategory))
+            {
+                pies = pies.Where(x => x.Category.CategoryName == pieCategory);
+            }
+
+
+            //return View(new PiesListViewModel
+            //{
+            //    Pies = pies,
+            //    CurrentCategory = currentCategory
+            //});
+
             return View(new PiesListViewModel
             {
                 Pies = pies,
-                CurrentCategory = currentCategory
+                Categories = new SelectList(_categoryRepository.AllCategories)
             });
         }
+
+       
 
         public IActionResult Details(int id)
         {

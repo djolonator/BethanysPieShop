@@ -17,5 +17,10 @@ namespace BethanysPieShop.Models
 
         public IEnumerable<Category> AllCategories => _appDbContext.Categories;
 
-    }
+                
+    }                  
+    
+
+
+
 }

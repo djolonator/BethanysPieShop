@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BethanysPieShop.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BethanysPieShop.ViewModels
 {
@@ -10,5 +11,10 @@ namespace BethanysPieShop.ViewModels
     {
         public IEnumerable<Pie> Pies { get; set; }
         public string CurrentCategory { get; set; }
+        public string? PieCategory { get; set; }
+        public string? SearchString { get; set; }
+        public SelectList? Categories { get; set; }
+
+        
     }
 }

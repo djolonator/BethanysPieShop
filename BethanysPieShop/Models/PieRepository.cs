@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BethanysPieShop.Models
 {
-    public class PieRepository: IPieRepository
+    public class PieRepository : IPieRepository
     {
         private readonly AppDbContext _appDbContext;
-        
+
         public PieRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
@@ -37,7 +37,7 @@ namespace BethanysPieShop.Models
             return _appDbContext.Pies.Include(c => c.Category).FirstOrDefault(p => p.PieId == pieId);
         }
 
-        public IEnumerable<Pie> GetAllPiesWithCategories() 
+        public IEnumerable<Pie> GetAllPiesWithCategories()
         {
             return _appDbContext.Pies.Include(c => c.Category);
         }
@@ -55,13 +55,13 @@ namespace BethanysPieShop.Models
             {
                 return false;
             }
-            else 
+            else
             {
                 _appDbContext.Pies.Remove(GetPieById(PieId));
                 _appDbContext.SaveChanges();
 
                 return true;
-            } 
+            }
         }
 
         public void AddPie(Pie pie)
@@ -69,5 +69,9 @@ namespace BethanysPieShop.Models
             _appDbContext.Pies.Add(pie);
             _appDbContext.SaveChanges();
         }
-    }
-}
+
+    
+        }
+    }   
+        
+

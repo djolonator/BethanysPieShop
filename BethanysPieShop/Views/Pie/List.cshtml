@@ -2,7 +2,17 @@
 
 
 <h1>@Model.CurrentCategory</h1>
+<form asp-controller="Pie" asp-action="ListNew" method="get">
+    <p>
 
+        <select asp-for="CurrentCategory" asp-items="Model.Pies.ca">
+            <option value="">All</option>
+        </select>
+
+        Name: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 @foreach (var pie in Model.Pies)
 {
     <partial name="_PieCard" model="pie" />
