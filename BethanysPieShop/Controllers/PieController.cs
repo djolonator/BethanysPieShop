@@ -22,22 +22,10 @@ namespace BethanysPieShop.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public ViewResult List(string category, string searchString, string pieCategory)
+        public ViewResult List( string searchString, string pieCategory)
         {
             IEnumerable<Pie> pies;
-            string currentCategory;
-
-            if (string.IsNullOrEmpty(category))
-            {
-                pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
-                currentCategory = "All pies";
-            }
-            else
-            {
-                pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == category)
-                    .OrderBy(p => p.PieId);
-                currentCategory = _categoryRepository.AllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
-            }
+            pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
 
             if (!string.IsNullOrEmpty(searchString))
             {
@@ -46,24 +34,19 @@ namespace BethanysPieShop.Controllers
 
             if (!string.IsNullOrEmpty(pieCategory))
             {
-                pies = pies.Where(x => x.Category.CategoryName == pieCategory);
+
+                pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == pieCategory)
+                  .OrderBy(p => p.PieId);
+                
             }
-
-
-            //return View(new PiesListViewModel
-            //{
-            //    Pies = pies,
-            //    CurrentCategory = currentCategory
-            //});
 
             return View(new PiesListViewModel
             {
                 Pies = pies,
-                Categories = new SelectList(_categoryRepository.AllCategories)
+                Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             });
         }
 
-       
 
         public IActionResult Details(int id)
         {
