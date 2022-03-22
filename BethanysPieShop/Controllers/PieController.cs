@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BethanysPieShop.Models;
 using BethanysPieShop.ViewModels;
@@ -27,17 +28,18 @@ namespace BethanysPieShop.Controllers
             IEnumerable<Pie> pies;
             pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
 
+            
+
+
             if (!string.IsNullOrEmpty(searchString))
             {
-                pies = pies.Where(s => s.Name!.Contains(searchString));
+                pies = pies.Where(s => s.Name.ToLower()!.Contains(searchString));
             }
 
             if (!string.IsNullOrEmpty(pieCategory))
             {
-
                 pies = _pieRepository.AllPies.Where(p => p.Category.CategoryName == pieCategory)
                   .OrderBy(p => p.PieId);
-                
             }
 
             return View(new PiesListViewModel
@@ -46,7 +48,6 @@ namespace BethanysPieShop.Controllers
                 Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             });
         }
-
 
         public IActionResult Details(int id)
         {
