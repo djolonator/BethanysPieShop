@@ -27,13 +27,10 @@ namespace BethanysPieShop.Controllers
         {
             IEnumerable<Pie> pies;
             pies = _pieRepository.AllPies.OrderBy(p => p.PieId);
-
             
-
-
             if (!string.IsNullOrEmpty(searchString))
             {
-                pies = pies.Where(s => s.Name.ToLower()!.Contains(searchString));
+                pies = pies.Where(s => s.Name.ToLower()!.Contains(searchString.ToLower()));
             }
 
             if (!string.IsNullOrEmpty(pieCategory))
