@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BethanysPieShop.Controllers
@@ -70,7 +71,7 @@ namespace BethanysPieShop.Controllers
         public IActionResult ViewDetails(int pieId)
         {
             var pie = _pieRepository.GetPieById(pieId);
-            var allCategories = _categoryRepository.AllCategories;
+           
 
             var vm = new PieVM()
             {//mapiranje
@@ -86,7 +87,7 @@ namespace BethanysPieShop.Controllers
                 PieId = pie.PieId,
                 ShortDescription = pie.ShortDescription,
                 Price = pie.Price,
-                Categories = allCategories
+                Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             };
 
             return View(vm);
@@ -132,11 +133,17 @@ namespace BethanysPieShop.Controllers
 
         public ViewResult CreatePie()
         {
-            var vm = new PieVM() { };
+            
+
+            var vm = new PieVM()
+            {
+               
+                Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
+            };
 
             return View(vm);
         }
-
+        
         public ViewResult AddPie()
         {
             var vm = new PieVM() { };
@@ -148,7 +155,7 @@ namespace BethanysPieShop.Controllers
         public ViewResult AddPie(PieVM vm)
         {
             var pie = new Pie();
-
+            
             pie.AllergyInformation = vm.AllergyInformation;
             pie.Category = vm.Category;
             pie.CategoryId = vm.CategoryId;

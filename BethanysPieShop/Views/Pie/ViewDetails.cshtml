@@ -79,7 +79,9 @@
     <div class="form-group">
         <label class="col-md-2 control-label">Select Category</label>
         <div class="col-md-5">
-            <select name="categories" class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "CategoryId", "CategoryName"))"></select>
+            <select name="categories" class="form-control" asp-for="CategoryId" asp-items="Model.Categories">
+                
+            </select>
         </div>
         <input type="hidden" asp-for="CategoryId" />
     </div>

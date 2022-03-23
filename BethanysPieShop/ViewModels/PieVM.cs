@@ -1,4 +1,5 @@
 ﻿using BethanysPieShop.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,11 +40,13 @@ namespace BethanysPieShop.ViewModels
         [Display(Name = "In Stock")]
         public bool InStock { get; set; }
 
-        [Display(Name = "Category Id")]
+        //[Display(Name = "Category Id")]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
+        //public IEnumerable<Category> Categories { get; set; }
+
+        public SelectList? Categories { get; set; }
     }
 }

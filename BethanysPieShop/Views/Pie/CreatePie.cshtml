@@ -1,6 +1,6 @@
 ﻿@model PieVM
 
-<form asp-action="AddPie" method="post" class="form-horizontal" role="form">
+<form asp-action="AddPie" asp-controller="Pie" method="post" class="form-horizontal" role="form">
     <h4>Fill in details about pie.</h4>
 
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -79,12 +79,22 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+        <label class="col-md-2 control-label">Select Category</label>
         <div class="col-md-5">
-            <input asp-for="CategoryId" class="form-control" />
-            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <select name="categories" class="form-control" asp-for="CategoryId" asp-items="Model.Categories">
+            </select>
         </div>
+        <input type="hidden" asp-for="CategoryId" />
+        
     </div>
+
+    @*<div class="form-group">     //ovako radi
+            <label asp-for="CategoryId" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+        </div>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
