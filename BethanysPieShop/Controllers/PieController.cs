@@ -76,7 +76,7 @@ namespace BethanysPieShop.Controllers
             var vm = new PieVM()
             {//mapiranje
                 AllergyInformation = pie.AllergyInformation,
-                Category = pie.Category,
+              //  Category = pie.Category,
                 CategoryId = pie.CategoryId,
                 ImageThumbnailUrl = pie.ImageThumbnailUrl,
                 ImageUrl = pie.ImageUrl,
@@ -87,7 +87,7 @@ namespace BethanysPieShop.Controllers
                 PieId = pie.PieId,
                 ShortDescription = pie.ShortDescription,
                 Price = pie.Price,
-                Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
+                //Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             };
 
             return View(vm);
@@ -133,11 +133,11 @@ namespace BethanysPieShop.Controllers
 
         public ViewResult CreatePie()
         {
-            
+
 
             var vm = new PieVM()
             {
-               
+                //Categories = _categoryRepository.AllCategories.ToList()
                 Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             };
 
@@ -146,7 +146,7 @@ namespace BethanysPieShop.Controllers
         
         public ViewResult AddPie()
         {
-            var vm = new PieVM() { };
+            var vm = new PieVM() {};
 
             return View(vm);
         }
@@ -160,8 +160,8 @@ namespace BethanysPieShop.Controllers
                 pie.CategoryId = _pieRepository.AllPies.Where(p => p.Category.CategoryName == vm.CategoryName).FirstOrDefault().Category.CategoryId;
             }
             pie.AllergyInformation = vm.AllergyInformation;
-            //pie.Category = vm.Category;
-            //pie.CategoryId = vm.CategoryId;
+           // pie.Category = vm.Category;
+           // pie.CategoryId = vm.CategoryId;
             pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
             pie.ImageUrl = vm.ImageUrl;
             pie.InStock = vm.InStock;
