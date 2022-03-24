@@ -45,9 +45,9 @@ namespace BethanysPieShop.ViewModels
 
         public Category Category { get; set; }
 
-       // public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
 
-        public SelectList? Categories { get; set; }
+       // public SelectList? Categories { get; set; }
         public string CategoryName { get; set; }
       
     }
