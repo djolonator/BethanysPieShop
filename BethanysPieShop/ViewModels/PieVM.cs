@@ -40,7 +40,7 @@ namespace BethanysPieShop.ViewModels
         [Display(Name = "In Stock")]
         public bool InStock { get; set; }
 
-        //[Display(Name = "Category Id")]
+        [Display(Name = "Category Id")]
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
@@ -48,5 +48,6 @@ namespace BethanysPieShop.ViewModels
         //public IEnumerable<Category> Categories { get; set; }
 
         public SelectList? Categories { get; set; }
+        public string CategoryName { get; set; }
     }
 }

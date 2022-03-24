@@ -155,10 +155,13 @@ namespace BethanysPieShop.Controllers
         public ViewResult AddPie(PieVM vm)
         {
             var pie = new Pie();
-            
+            if (!string.IsNullOrEmpty(vm.CategoryName))
+            {
+                pie.CategoryId = _pieRepository.AllPies.Where(p => p.Category.CategoryName == vm.CategoryName).FirstOrDefault().Category.CategoryId;
+            }
             pie.AllergyInformation = vm.AllergyInformation;
-            pie.Category = vm.Category;
-            pie.CategoryId = vm.CategoryId;
+            //pie.Category = vm.Category;
+            //pie.CategoryId = vm.CategoryId;
             pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
             pie.ImageUrl = vm.ImageUrl;
             pie.InStock = vm.InStock;
@@ -168,7 +171,7 @@ namespace BethanysPieShop.Controllers
             pie.PieId = vm.PieId;
             pie.ShortDescription = vm.ShortDescription;
             pie.Price = vm.Price;
-
+          
             _pieRepository.AddPie(pie);
 
             return View(vm);
