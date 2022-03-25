@@ -137,8 +137,8 @@ namespace BethanysPieShop.Controllers
 
             var vm = new PieVM()
             {
-                Categories = _categoryRepository.AllCategories.ToList()
-              // Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
+                //Categories = _categoryRepository.AllCategories.ToList()
+               Categories = new SelectList(_categoryRepository.AllCategories.Select(r => r.CategoryName))
             };
 
             return View(vm);
@@ -155,13 +155,13 @@ namespace BethanysPieShop.Controllers
         public ViewResult AddPie(PieVM vm)
         {
             var pie = new Pie();
-            //if (!string.IsNullOrEmpty(vm.CategoryName))
-            //{
-            //    pie.CategoryId = _pieRepository.AllPies.Where(p => p.Category.CategoryName == vm.CategoryName).FirstOrDefault().Category.CategoryId;
-            //}
+            if (!string.IsNullOrEmpty(vm.CategoryName))
+            {
+                pie.CategoryId = _pieRepository.AllPies.Where(p => p.Category.CategoryName == vm.CategoryName).FirstOrDefault().Category.CategoryId;
+            }
             pie.AllergyInformation = vm.AllergyInformation;
-            pie.Category = vm.Category;
-            pie.CategoryId = vm.CategoryId;
+            //pie.Category = vm.Category;
+            //pie.CategoryId = vm.CategoryId;
             pie.ImageThumbnailUrl = vm.ImageThumbnailUrl;
             pie.ImageUrl = vm.ImageUrl;
             pie.InStock = vm.InStock;

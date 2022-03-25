@@ -79,11 +79,11 @@
     <div class="form-group">
         <label class="col-md-2 control-label">Select Category</label>
         <div class="col-md-5">
-            @Html.LabelFor(c => c.Category)
-            @Html.DropDownListFor(c => c.Category, new SelectList(Model.Categories, "CategoryId", "CategoryName"), "", new { @class = "form-control" })
-            @*<select name="categories" class="form-control" asp-for="CategoryId" asp-items="Model.Categories">
+            @*@Html.LabelFor(c => c.Category)
+            @Html.DropDownListFor(c => c.Category, new SelectList(Model.Categories, "CategoryId", "CategoryName"), "", new { @class = "form-control" })*@
+            <select name="categories" class="form-control" asp-for="CategoryId" asp-items="Model.Categories">
 
-        </select>*@
+        </select>
         </div>
         <input type="hidden" asp-for="CategoryId" />
     </div>
