@@ -5,13 +5,17 @@
        asp-action="Index"
        class="dropdown-toggle" data-toggle="dropdown">Pies<b class="caret"></b></a>
     <ul class="dropdown-menu">
-       
+
         <li>
             <a asp-controller="Pie" asp-action="List" asp-route-Category="">View all pies</a>
         </li>
         <li class="divider"></li>
         <li>
             <a class="btn btn-primary" asp-controller="Pie" asp-action="PieManager" asp-route-Category="">Manage Pies</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="btn btn-primary" asp-controller="Category" asp-action="Index" asp-route-Category="">Manage Categories</a>
         </li>
     </ul>
 </li>

@@ -1,0 +1,38 @@
+﻿@using System.Data
+@model IEnumerable<CategoryViewModel>
+
+@{ 
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create new", "Create")
+</p>
+<table class="table"> 
+    
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CategoryId)</th>
+
+            <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+
+        </tr>
+    
+    
+        @foreach (var item in Model)
+            {
+        <tr>
+            <th>@Html.DisplayFor(itemM => item.CategoryId)</th>
+            <th>@Html.DisplayFor(itemM => item.CategoryName)</th>
+            <th>@Html.DisplayFor(itemM => item.Description)</th>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId });    @*prvi edit je ime, drugi ime metoda*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId });
+            </td>
+        </tr>
+            }
+  
+</table>

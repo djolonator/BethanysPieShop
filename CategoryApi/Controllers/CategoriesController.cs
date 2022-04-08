@@ -40,11 +40,11 @@ namespace CategoryApi.Controllers
 
         }
 
-        [HttpDelete("{categoryId}")]
-        public ActionResult DeleteCategory(int categoryId)
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteCategory(int id)
         {
 
-            _categoryRepository.DeleteCategory(categoryId);
+            _categoryRepository.DeleteCategory(id);
 
             return NoContent();
 

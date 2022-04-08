@@ -15,7 +15,7 @@ namespace CategoryApi.AppDbContext
         }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Pie> CourPie { get; set; }
+       
 
         
     }
