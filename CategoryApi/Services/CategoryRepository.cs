@@ -30,7 +30,7 @@ namespace CategoryApi.Services
         {
             
             var categoryToDelete = _context.Categories.Where(x => x.CategoryId == categoryId).FirstOrDefault();
-
+            
             _context.Categories.Remove(categoryToDelete);
 
             _context.SaveChanges();
@@ -42,13 +42,23 @@ namespace CategoryApi.Services
             return _context.Categories;
         }
 
+        public Category GetCategory(int categoryId)
+        {
+            return _context.Categories.FirstOrDefault(a => a.CategoryId == categoryId);
+           // _context.Categories.FindAsync(categoryId);
+        }
+
         public int UpdateCategory(Category category)
         {
-            _context.Entry(category).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            
+            _context.Update(category);
 
             _context.SaveChanges();
 
             return category.CategoryId;
+
         }
+
+       
     }
 }

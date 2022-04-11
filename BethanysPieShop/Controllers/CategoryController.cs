@@ -59,6 +59,7 @@ namespace BethanysPieShop.Controllers
             
             return View();
         }
+
         public IActionResult Edit(int id)
         {
             CategoryViewModel model = new CategoryViewModel();
@@ -82,7 +83,7 @@ namespace BethanysPieShop.Controllers
             string data = JsonConvert.SerializeObject(model);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = client.PutAsync(client.BaseAddress + "/categories/" + model.CategoryId, content).Result;
+            HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/categories/" + model.CategoryId, content).Result;
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -92,9 +93,11 @@ namespace BethanysPieShop.Controllers
         }
 
         [HttpDelete]
+
+         [Route("api/categories/{categoryId}")] 
         public IActionResult Delete(int id)
         {
-            HttpResponseMessage response =  client.DeleteAsync(client.BaseAddress + "/categories/" + id).Result;
+            HttpResponseMessage response =  client.DeleteAsync(client.BaseAddress + "/categories?id=" + id).Result;
 
             return RedirectToAction("Index");
         }

@@ -30,6 +30,14 @@ namespace CategoryApi.Controllers
             return Ok(categoryFromRepo);
         }
 
+        [HttpGet("{categoryId}")]
+        public IActionResult GetCategory(int categoryId)
+        {
+            var categoryFromRepo = _categoryRepository.GetCategory(categoryId);
+
+            return Ok(categoryFromRepo);
+        }
+
         [HttpPost]
         public IActionResult CreateCategory([FromBody] Category category)
         {
@@ -40,7 +48,9 @@ namespace CategoryApi.Controllers
 
         }
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete]
+
+       // [Route("{categoryId}")]
         public ActionResult DeleteCategory(int id)
         {
 
@@ -50,8 +60,9 @@ namespace CategoryApi.Controllers
 
         }
 
-        [HttpPut]
-        [Route("")]
+        [HttpPost]
+        //[Route("")]
+        [Route("{categoryId}")]
         public IActionResult UpdateCategory([FromBody] Category category)
         {
 
