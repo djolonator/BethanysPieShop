@@ -92,14 +92,15 @@ namespace BethanysPieShop.Controllers
             return View("Create", model);
         }
 
-        [HttpDelete]
+        //[HttpDelete]
 
-         [Route("api/categories/{categoryId}")] 
         public IActionResult Delete(int id)
         {
+           
             HttpResponseMessage response =  client.DeleteAsync(client.BaseAddress + "/categories?id=" + id).Result;
-
+            
             return RedirectToAction("Index");
+            
         }
     }
 }
